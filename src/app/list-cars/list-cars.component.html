@@ -1,0 +1,7 @@
+<div class="container">
+  <h1>Listar Vagas Ocupadas</h1>
+  <div *ngFor="let usersCars of usersCars">
+    <app-car [car]="usersCars.car" [user]="usersCars.user" [deletar]="deletar(this)"></app-car>
+    <div class="divider"></div>
+  </div>
+</div>

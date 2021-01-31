@@ -1,0 +1,21 @@
+<div class="container">
+  <div *ngIf="feedback.show" class="{{ feedback.class }}">
+    {{ feedback.message }}
+  </div>
+  <h1 class="title">{{ titulo }}</h1>
+  <form [formGroup]="formRegistration" (submit)="onSubmit()">
+    <div class="form-group">
+      <label for="name">Nome: </label>
+      <input class="form-control" type="text" formControlName="name" />
+    </div>
+
+    <div class="form-group">
+      <label for="phone">Telefone: </label>
+      <input class="form-control" type="text" formControlName="phone" />
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="isLoading">
+      {{ textoBotao }}
+    </button>
+  </form>
+</div>

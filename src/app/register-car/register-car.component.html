@@ -1,0 +1,56 @@
+<div class="container">
+  <div *ngIf="feedback.show" class="{{ feedback.class }}">
+    {{ feedback.message }}
+  </div>
+  <h1 class="title">{{ titulo }}</h1>
+  <form [formGroup]="formRegistration" (submit)="onSubmit()">
+    <div class="form-group">
+      <label for="owner"> Dono do carro: </label>
+      <select
+        class="form-control"
+        formControlName="owner"
+      >
+        <option value="" hidden disabled selected>Selecione um dono</option>
+        <option *ngFor="let user of users" value="{{ user._id }}">
+          {{ user.name }}
+        </option>
+       </select>
+    </div>
+
+    <div class="form-group">
+      <label for="licensePlate">Placa do carro</label>
+      <input class="form-control" type="text" formControlName="licensePlate" />
+    </div>
+
+    <div class="form-group">
+      <label for="model">Modelo do carro</label>
+      <input class="form-control" type="text" formControlName="model" />
+    </div>
+    <div class="form-group">
+      <label for="brand">Marca do carro</label>
+      <input class="form-control" type="text" formControlName="brand" />
+    </div>
+
+    <div class="form-group">
+        <label for="year">Ano do carro: </label>
+        <select class="form-control" formControlName="year">
+          <option value="" hidden disabled selected>Selecione um ano</option>
+          <option *ngFor="let year of years" value="{{ year }}">
+            {{ year }}
+          </option>
+        </select>
+      </div>
+
+    <div class="form-group">
+      <label for="parkingSpaceNumber">Número da vaga: </label>
+      <select class="form-control" formControlName="parkingSpaceNumber">
+        <option value="" hidden disabled selected>Selecione uma vaga</option>
+        <option *ngFor="let slots of parkingSpaces" value="{{ slots.number }}">
+          {{ slots.number }}
+        </option>
+      </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="isLoading">{{ textoBotao }}</button>
+  </form>
+</div>

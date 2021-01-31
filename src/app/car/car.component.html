@@ -1,0 +1,33 @@
+<div class="container-car card">
+  <div class="card-body">
+    <h1 class="card-title">Vaga: {{ car.parkingSpaceNumber }}</h1>
+    <div>
+      <div class="row">
+        <div class="column">
+          Placa:
+          <h3>{{ car.licensePlate | licensePlate}}</h3>
+        </div>
+        <div class="column">
+          Dono:
+          <h3>{{ user.name }}</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="column">
+          Modelo:
+          <h3>{{ car.model + ' - ' + car.year }}</h3>
+        </div>
+        <div class="column">
+          Marca:
+          <h3>{{ car.brand }}</h3>
+        </div>
+      </div>
+    </div>
+    <div class="button-container">
+      <button class="btn btn-primary" routerLink="/edit-car/{{ car._id }}">
+        Editar
+      </button>
+      <button class="btn btn-danger" (click)="deletar(car, user._id)">Deletar</button>
+    </div>
+  </div>
+</div>

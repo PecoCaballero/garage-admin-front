@@ -1,0 +1,26 @@
+.button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.date {
+  color: #c2bfbf;
+  text-align: end;
+  margin: 0;
+}
+
+.card {
+  position: inherit !important;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0 16px 0 16px;
+}
+
+.column {
+   flex: 1
+}
