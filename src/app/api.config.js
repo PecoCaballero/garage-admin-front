@@ -3,7 +3,7 @@
 
 
 const APIConfig = {
-    baseURL: 'http://localhost:8080/api/'
+    baseURL: 'https://garage-admin.herokuapp.com/api/'
 }
 
 
