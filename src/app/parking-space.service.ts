@@ -28,7 +28,7 @@ export class ParkingSpaceService {
 
 
   getParkingSpaces() {
-    const parkingSpacesObservable = this.http.get<ParkingSpace[]>(`${APIConfig.baseURL}parkingSpaces`)
+    const parkingSpacesObservable = this.http.get<ParkingSpace[]>(`${APIConfig.baseURL}parkingSpaces`, { headers: this.headers })
     parkingSpacesObservable.subscribe(res => {
       this.parkingSpaces = res
     })
@@ -37,7 +37,7 @@ export class ParkingSpaceService {
 
   editParkingSpace({ number, available }: ParkingSpace) {
     const params = new HttpParams({ fromObject: { number: number.toString(), available: available ? 'true' : 'false' } })
-    const parkingSpacesObservable = this.http.put<ParkingSpace>(`${APIConfig.baseURL}parkingSpaces`, params)
+    const parkingSpacesObservable = this.http.put<ParkingSpace>(`${APIConfig.baseURL}parkingSpaces`, { params: params, headers: this.headers })
     parkingSpacesObservable.subscribe(res => {
       this.getParkingSpaces()
     })

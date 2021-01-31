@@ -36,7 +36,7 @@ export class UserService {
   }
 
   getAllUsers() {
-    const usersObservable = this.http.get<User[]>(`${APIConfig.baseURL}users`)
+    const usersObservable = this.http.get<User[]>(`${APIConfig.baseURL}users`, { headers: this.headers })
     usersObservable.subscribe(res => {
       this.users = res
     })
@@ -46,7 +46,7 @@ export class UserService {
   postUser(user: User) {
     console.log('postUser: ', user)
     const params = new HttpParams({ fromObject: { name: user.name, phone: user.phone } })
-    const result = this.http.post<{user: User, httpHandler: HttpHandler}>(`${APIConfig.baseURL}users`, params)
+    const result = this.http.post<{ user: User, httpHandler: HttpHandler }>(`${APIConfig.baseURL}users`, { params: params, headers: this.headers })
     result.subscribe((res) => {
       this.getAllUsers()
     })
@@ -56,7 +56,7 @@ export class UserService {
   editUser(user: User) {
     console.log('Edit User: ', user)
     const params = new HttpParams({ fromObject: { name: user.name, phone: user.phone, cars: user.cars } })
-    const result = this.http.put<User>(`${APIConfig.baseURL}users/${user._id}`, params)
+    const result = this.http.put<User>(`${APIConfig.baseURL}users/${user._id}`, { params: params, headers: this.headers })
     result.subscribe((res) => {
       console.log('User edited: ', res)
       this.getAllUsers()
@@ -65,6 +65,6 @@ export class UserService {
   }
 
   deleteUser(id: string) {
-    return this.http.delete<HttpHandler>(`${APIConfig.baseURL}users/${id}`,)
+    return this.http.delete<HttpHandler>(`${APIConfig.baseURL}users/${id}`, { headers: this.headers })
   }
 }

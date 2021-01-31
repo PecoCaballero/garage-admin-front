@@ -40,7 +40,7 @@ export class CarsService {
   }
 
   getAllCars() {
-    const carsObservable = this.http.get<Car[]>(`${APIConfig.baseURL}cars`)
+    const carsObservable = this.http.get<Car[]>(`${APIConfig.baseURL}cars`, { headers: this.headers })
     carsObservable.subscribe(res => {
       this.cars = res
     })
@@ -49,19 +49,19 @@ export class CarsService {
 
   postCar(car: Car) {
     const params = new HttpParams({ fromObject: { licensePlate: car.licensePlate, model: car.model, brand: car.brand, ownerID: car.ownerID, year: car.year.toString(), parkingSpaceNumber: car.parkingSpaceNumber.toString() } })
-    const result = this.http.post<any>(`${APIConfig.baseURL}cars`, params)
+    const result = this.http.post<any>(`${APIConfig.baseURL}cars`, { params: params, headers: this.headers })
     console.log('cadastro finalizado')
     return result
   }
 
   editCar(id: string, car: Car) {
     const params = new HttpParams({ fromObject: { licensePlate: car.licensePlate.toString(), model: car.model, brand: car.brand, ownerID: car.ownerID, year: car.year.toString(), parkingSpaceNumber: car.parkingSpaceNumber.toString() } })
-    const result = this.http.put<HttpHandler>(`${APIConfig.baseURL}cars/${id}`, params)
+    const result = this.http.put<HttpHandler>(`${APIConfig.baseURL}cars/${id}`, { params: params, headers: this.headers })
     return result
   }
 
   deleteCar(id: string) {
-    const result = this.http.delete<HttpHandler>(`${APIConfig.baseURL}cars/${id}`)
+    const result = this.http.delete<HttpHandler>(`${APIConfig.baseURL}cars/${id}`, { headers: this.headers })
     result.subscribe((res) => console.log('delete: ', res))
     this.getAllCars()
     return result
